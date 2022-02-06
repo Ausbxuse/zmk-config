@@ -51,7 +51,7 @@
 		spi-max-frequency = <4000000>;
 
 		/* WS2812 */
-		chain-length = <6>; /* arbitrary; change at will */
+		chain-length = <27>; /* arbitrary; change at will */
 		spi-one-frame = <0x70>;
 		spi-zero-frame = <0x40>;
 	};
@@ -225,7 +225,7 @@
 
       bindings = <
       &kp F11    &kp F1       &kp F2        &kp F3       &kp F4       &kp F5          &kp F6  &kp F7 &kp F8  &kp F9      &kp F10 &kp F12
-      &kp LCTRL  &bt BT_SEL 1 &bt BT_SEL 2  &bt BT_SEL 3 &bt BT_SEL 4 &bt BT_CLR      &tog 1  &kp CAPS &ext_power EP_OFF &ext_power EP_ON &kp K_SLEEP  &kp LALT
+      &kp LCTRL  &bt BT_SEL 1 &bt BT_SEL 2  &bt BT_SEL 3 &bt BT_SEL 4 &bt BT_CLR      &tog 1  &kp CAPS &ext_power EP_OFF &ext_power EP_ON &kp C_SLEEP  &kp LALT
       &rgb_ug RGB_TOG &rgb_ug RGB_HUI &rgb_ug RGB_HUD &rgb_ug RGB_SAI &rgb_ug RGB_SAD &rgb_ug RGB_BRI &rgb_ug RGB_BRD &rgb_ug RGB_SPI &rgb_ug RGB_SPD &rgb_ug RGB_EFF &rgb_ug RGB_EFR &rgb_ug RGB_TOG     
                                    &out OUT_USB  &kp INS  &trans    &trans   &kp DEL  &out OUT_BLE 
       >;

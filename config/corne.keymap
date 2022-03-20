@@ -67,8 +67,8 @@
     conditional_layers {
         compatible = "zmk,conditional-layers";
         tri_layer {
-            if-layers = <2 3>;
-            then-layer = <4>;
+            if-layers = <3 4>;
+            then-layer = <5>;
         };
     };
 };
@@ -135,7 +135,30 @@
       &kp TAB   &kp Q  &kp W  &kp E   &kp R   &kp T                      &kp Y  &kp U  &kp I     &kp O   &kp P    &kp BSLH
       &kp LCTRL &kp A  &kp S  &kp D   &kp F   &kp G                      &kp H  &kp J  &kp K     &kp L   &kp SEMI &kp SQT
       &kp LSHFT &kp Z  &kp X  &kp C   &kp V   &kp B                      &kp N  &kp M  &kp COMMA &kp DOT &kp FSLH &kp RSHFT
-                            &kp LALT &mt LGUI BSPC &lt 2 ESC      &lt 3 RET &kp SPACE &kp RCTRL
+                            &kp LALT &mt LGUI BSPC &lt 3 ESC      &lt 4 RET &kp SPACE &kp RCTRL
+      >;
+
+    };
+
+    league_layer {
+
+  /*
+  * ┌─────┬─────┬─────┬─────┬─────┬─────┐               ┌─────┬─────┬─────┬─────┬─────┬─────┐
+  * │Tab  │  q  │  w  │  e  │  r  │  t  │               │  y  │  u  │  i  │  o  │  p  │  \  │
+  * ├─────┼─────┼─────┼─────┼─────┼─────┤               ├─────┼─────┼─────┼─────┼─────┼─────┤
+  * │LCTRL│  a  │  s  │  d  │  f  │  g  │               │  h  │  j  │  k  │  l  │  ;  │  '  │
+  * ├─────┼─────┼─────┼─────┼─────┼─────┤               ├─────┼─────┼─────┼─────┼─────┼─────┤
+  * │LSHFT│  z  │  x  │  c  │  v  │  b  │               │  n  │  m  │  ,  │  .  │  /  │RSHFT│
+  * └─────┴─────┴─────┴───┬─┴───┬─┴───┬─┴───┐        ┌──┴──┬──┴──┬──┴──┬──┴─────┴─────┴─────┘
+  *                       │LALT │ SPC │ESC/2│        │RET/3│SPC  │RCTRL│
+  *                       └─────┴─────┴─────┘        └─────┴─────┴─────┘
+  */
+
+      bindings = <
+      &kp ESC   &kp N1 &kp N2 &kp N3  &kp N4  &kp N5                     &kp N6 &kp N7 &kp N8  &kp N9  &kp N0   &kp MINUS
+      &kp TAB   &kp Q  &kp W  &kp E   &kp R   &kp T                      &kp Y  &kp U  &kp I   &kp O   &kp P    &kp BSLH
+      &kp LCTRL &kp A  &kp S  &kp D   &kp F   &kp G                      &kp H  &kp J  &kp K   &kp L   &kp SEMI &kp SQT
+                             &kp LALT &kp SPACE  &lt 3 ESC      &lt 4 RET &kp SPACE   &kp RCTRL
       >;
 
     };
@@ -155,10 +178,10 @@
   */
 
       bindings = <
-      &kp ESC   &kp N1 &kp N2 &kp N3  &kp N4  &kp N5                     &kp N6 &kp N7 &kp N8  &kp N9  &kp N0   &kp MINUS
-      &kp TAB   &kp Q  &kp W  &kp E   &kp R   &kp T                      &kp Y  &kp U  &kp I   &kp O   &kp P    &kp BSLH
-      &kp LCTRL &kp A  &kp S  &kp D   &kp F   &kp G                      &kp H  &kp J  &kp K   &kp L   &kp SEMI &kp SQT
-                             &kp LALT &kp SPACE  &lt 2 ESC      &lt 3 RET &kp SPACE   &kp RCTRL
+      &kp TAB   &kp Q  &kp W  &kp E   &kp R   &kp T                      &kp N4  &kp N3  &kp N2     &kp N1   &kp ESC    &kp BSLH
+      &kp LCTRL &kp A  &kp S  &kp D   &kp F   &kp G                      &kp H  &kp J  &kp K     &kp L   &kp SEMI &kp SQT
+      &kp LSHFT &kp Z  &kp X  &kp C   &kp V   &kp B                      &kp N  &kp M  &kp COMMA &kp DOT &kp FSLH &kp RSHFT
+                             &kp LALT &kp SPACE  &lt 3 ESC      &lt 4 RET &kp SPACE   &kp RCTRL
       >;
 
     };
@@ -225,7 +248,7 @@
 
       bindings = <
       &kp F11    &kp F1       &kp F2        &kp F3       &kp F4       &kp F5          &kp F6  &kp F7 &kp F8  &kp F9      &kp F10 &kp F12
-      &kp LCTRL  &bt BT_SEL 1 &bt BT_SEL 2  &bt BT_SEL 3 &bt BT_SEL 4 &bt BT_CLR      &tog 1  &kp CAPS &ext_power EP_OFF &ext_power EP_ON &kp C_SLEEP  &kp LALT
+      &kp LCTRL  &bt BT_SEL 1 &bt BT_SEL 2  &bt BT_SEL 3 &bt BT_SEL 4 &bt BT_CLR      &tog 1  &tog 2 &ext_power EP_OFF &ext_power EP_ON &kp CAPS  &kp LALT
       &rgb_ug RGB_TOG &rgb_ug RGB_HUI &rgb_ug RGB_HUD &rgb_ug RGB_SAI &rgb_ug RGB_SAD &rgb_ug RGB_BRI &rgb_ug RGB_BRD &rgb_ug RGB_SPI &rgb_ug RGB_SPD &rgb_ug RGB_EFF &rgb_ug RGB_EFR &rgb_ug RGB_TOG     
                                    &out OUT_USB  &kp INS  &trans    &trans   &kp DEL  &out OUT_BLE 
       >;

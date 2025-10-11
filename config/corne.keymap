@@ -9,51 +9,200 @@
 #include <dt-bindings/zmk/bt.h>
 
 / {
-        keymap {
-                compatible = "zmk,keymap";
-
-                default_layer {
-                        display-name = "Default Layer";
-// -----------------------------------------------------------------------------------------
-// |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BSPC |
-// | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
-// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
-//                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
-                        bindings = <
-   &kp TAB   &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
-   &kp LCTRL &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
-   &kp LSHFT &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp ESC
-                  &kp LGUI &mo 1 &kp SPACE   &kp RET &mo 2 &kp RALT
-                        >;
-                };
-                lower_layer {
-                        display-name = "Lower Layer";
-// -----------------------------------------------------------------------------------------
-// |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BSPC |
-// | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
-// | SHFT |     |     |     |     |     |   |     |     |     |     |     |      |
-//                    | GUI |     | SPC |   | ENT |     | ALT |
-                        bindings = <
-   &kp TAB    &kp N1       &kp N2       &kp N3       &kp N4       &kp N5         &kp N6   &kp N7   &kp N8 &kp N9    &kp N0 &kp BSPC
-   &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &trans
-   &kp LSHFT  &trans       &trans       &trans       &trans       &trans         &trans   &trans   &trans &trans    &trans &trans
-                                    &kp LGUI     &trans       &kp SPACE      &kp RET  &trans   &kp RALT
-                        >;
-                };
-
-                raise_layer {
-                        display-name = "Raise Layer";
-// -----------------------------------------------------------------------------------------
-// |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BSPC |
-// | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
-// | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
-//                    | GUI |     | SPC |   | ENT |     | ALT |
-                        bindings = <
-   &kp  TAB  &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp ASTRK &kp LPAR &kp RPAR &kp BSPC
-   &kp LCTRL &trans   &trans &trans   &trans   &trans      &kp MINUS &kp EQUAL &kp LBKT  &kp RBKT &kp BSLH &kp GRAVE
-   &kp LSHFT &trans   &trans &trans   &trans   &trans      &kp UNDER &kp PLUS  &kp LBRC  &kp RBRC &kp PIPE &kp TILDE
-                             &kp LGUI &trans   &kp SPACE   &kp RET   &trans    &kp RALT
-                        >;
-                };
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+        tri_layer {
+            if-layers = <3 4>;
+            then-layer = <5>;
         };
+    };
+};
+
+/* / {
+    combos {
+        compatible = "zmk,combos";
+        combo_layer {
+            timeout-ms = <50>;
+            key-positions = <36 41>;
+            bindings = <&mo 4>;
+        };
+    };
+}; */
+
+&lt {
+  tapping-term-ms = <180>;
+  quick_tap_ms = <0>;
+  flavor = "hold-preferred";
+};
+
+&mt {
+  tapping-term-ms = <150>;
+  quick_tap_ms = <0>;
+  flavor = "tap-preferred";
+  // retro-tap;
+};
+
+
+/ {
+
+  behaviors {
+    hm: homerow_mods {
+      compatible = "zmk,behavior-hold-tap";
+      label = "HOMEROW_MODS";
+      #binding-cells = <2>;
+      tapping-term-ms = <150>;
+      quick_tap_ms = <0>;
+      flavor = "tap-preferred";
+      bindings = <&kp>, <&kp>;
+    };
+
+  };
+
+
+  keymap {
+    compatible = "zmk,keymap";
+
+    default_layer {
+  /*
+  *
+  * ┌─────┬─────┬─────┬─────┬─────┬─────┐               ┌─────┬─────┬─────┬─────┬─────┬─────┐
+  * │Tab  │  q  │  w  │  e  │  r  │  t  │               │  y  │  u  │  i  │  o  │  p  │  \  │
+  * ├─────┼─────┼─────┼─────┼─────┼─────┤               ├─────┼─────┼─────┼─────┼─────┼─────┤
+  * │LCTRL│  a  │  s  │  d  │  f  │  g  │               │  h  │  j  │  k  │  l  │  ;  │  '  │
+  * ├─────┼─────┼─────┼─────┼─────┼─────┤               ├─────┼─────┼─────┼─────┼─────┼─────┤
+  * │LSHFT│  z  │  x  │  c  │  v  │  b  │               │  n  │  m  │  ,  │  .  │  /  │RSHFT│
+  * └─────┴─────┴─────┴───┬─┴───┬─┴───┬─┴───┐        ┌──┴──┬──┴──┬──┴──┬──┴─────┴─────┴─────┘
+  *                       │LALT │GUI/B│ESC/2│        │RET/3│SPC  │RCTRL│
+  *                       └─────┴─────┴─────┘        └─────┴─────┴─────┘
+  */
+    display-name = "Main";
+      bindings = <
+      &kp TAB   &kp Q  &kp W  &kp E   &kp R   &kp T                      &kp Y  &kp U  &kp I     &kp O   &kp P    &kp BSLH
+      &kp LCTRL &kp A  &kp S  &kp D   &kp F   &kp G                      &kp H  &kp J  &kp K     &kp L   &kp SEMI &kp SQT
+      &kp LSHFT &kp Z  &kp X  &kp C   &kp V   &kp B                      &kp N  &kp M  &kp COMMA &kp DOT &kp FSLH &kp RSHFT
+                            &kp LGUI &mt LALT BSPC &lt 3 ESC      &lt 4 RET &kp SPACE &kp RCTRL
+      >;
+
+    };
+
+    league_layer {
+
+  /*
+  * ┌─────┬─────┬─────┬─────┬─────┬─────┐               ┌─────┬─────┬─────┬─────┬─────┬─────┐
+  * │Tab  │  q  │  w  │  e  │  r  │  t  │               │  y  │  u  │  i  │  o  │  p  │  \  │
+  * ├─────┼─────┼─────┼─────┼─────┼─────┤               ├─────┼─────┼─────┼─────┼─────┼─────┤
+  * │LCTRL│  a  │  s  │  d  │  f  │  g  │               │  h  │  j  │  k  │  l  │  ;  │  '  │
+  * ├─────┼─────┼─────┼─────┼─────┼─────┤               ├─────┼─────┼─────┼─────┼─────┼─────┤
+  * │LSHFT│  z  │  x  │  c  │  v  │  b  │               │  n  │  m  │  ,  │  .  │  /  │RSHFT│
+  * └─────┴─────┴─────┴───┬─┴───┬─┴───┬─┴───┐        ┌──┴──┬──┴──┬──┴──┬──┴─────┴─────┴─────┘
+  *                       │LALT │ SPC │ESC/2│        │RET/3│SPC  │RCTRL│
+  *                       └─────┴─────┴─────┘        └─────┴─────┴─────┘
+  */
+
+    display-name = "League";
+      bindings = <
+      &kp ESC   &kp N1 &kp N2 &kp N3  &kp N4  &kp N5                     &kp N6 &kp N7 &kp N8  &kp N9  &kp N0   &kp MINUS
+      &kp TAB   &kp Q  &kp W  &kp E   &kp R   &kp T                      &kp Y  &kp U  &kp I   &kp O   &kp P    &kp BSLH
+      &kp LCTRL &kp A  &kp S  &kp D   &kp F   &kp G                      &kp H  &kp J  &kp K   &kp L   &kp SEMI &kp SQT
+                             &kp LALT &kp SPACE  &lt 3 ESC      &lt 4 RET &kp SPACE   &kp RCTRL
+      >;
+
+    };
+
+    gaming_layer {
+
+  /*
+  * ┌─────┬─────┬─────┬─────┬─────┬─────┐               ┌─────┬─────┬─────┬─────┬─────┬─────┐
+  * │Tab  │  q  │  w  │  e  │  r  │  t  │               │  y  │  u  │  i  │  o  │  p  │  \  │
+  * ├─────┼─────┼─────┼─────┼─────┼─────┤               ├─────┼─────┼─────┼─────┼─────┼─────┤
+  * │LCTRL│  a  │  s  │  d  │  f  │  g  │               │  h  │  j  │  k  │  l  │  ;  │  '  │
+  * ├─────┼─────┼─────┼─────┼─────┼─────┤               ├─────┼─────┼─────┼─────┼─────┼─────┤
+  * │LSHFT│  z  │  x  │  c  │  v  │  b  │               │  n  │  m  │  ,  │  .  │  /  │RSHFT│
+  * └─────┴─────┴─────┴───┬─┴───┬─┴───┬─┴───┐        ┌──┴──┬──┴──┬──┴──┬──┴─────┴─────┴─────┘
+  *                       │LALT │ SPC │ESC/2│        │RET/3│SPC  │RCTRL│
+  *                       └─────┴─────┴─────┘        └─────┴─────┴─────┘
+  */
+
+    display-name = "FPS";
+      bindings = <
+      &kp TAB   &kp Q  &kp W  &kp E   &kp R   &kp T                      &kp Y  &kp U  &kp I     &kp O   &kp P    &kp BSLH
+      &kp LCTRL &kp A  &kp S  &kp D   &kp F   &kp G                      &kp H  &kp J  &kp K     &kp L   &kp SEMI &kp SQT
+      &kp LSHFT &kp Z  &kp X  &kp C   &kp V   &kp B                      &kp N  &kp M  &kp COMMA &kp DOT &kp FSLH &kp RSHFT
+                            &kp LALT &kp SPACE &lt 3 ESC      &lt 4 RET &kp SPACE &kp RCTRL
+      >;
+
+    };
+
+
+    symbol_layer {
+
+  /*
+  * ┌─────┬─────┬─────┬─────┬─────┬─────┐               ┌─────┬─────┬─────┬─────┬─────┬─────┐
+  * │  `  │  ^  │  &  │  *  │  (  │  )  │               │  ,  │  .  │  /  │  <  │  >  │  +  │
+  * ├─────┼─────┼─────┼─────┼─────┼─────┤               ├─────┼─────┼─────┼─────┼─────┼─────┤
+  * │LCTRL│  1  │  2  │  3  │  4  │  5  │               │  6  │  7  │  8  │  9  │  0  │  -  │
+  * ├─────┼─────┼─────┼─────┼─────┼─────┤               ├─────┼─────┼─────┼─────┼─────┼─────┤
+  * │  ~  │  !  │  @  │  #  │  $  │  %  │               │  _  │  [  │  ]  │  {  │  }  │  =  │
+  * └─────┴─────┴─────┴───┬─┴───┬─┴───┬─┴───┐        ┌──┴──┬──┴──┬──┴──┬──┴─────┴─────┴─────┘
+  *                       │LALT │MO3  │LGUI │        │RET/3│SPC  │RALT │
+  *                       └─────┴─────┴─────┘        └─────┴─────┴─────┘
+      */
+
+    display-name = "Sym";
+      bindings = <
+      &kp GRAVE &kp N1    &kp N2   &kp N3          &kp N4     &kp N5         &kp N6    &kp N7    &kp N8   &kp N9   &kp N0    &kp PLUS
+      &kp LCTRL &kp CARET &kp AMPS &kp KP_MULTIPLY &kp LT     &kp GT         &kp COMMA &kp DOT   &kp FSLH &kp LPAR &kp RPAR  &kp MINUS
+      &kp TILDE &kp EXCL  &kp AT   &kp HASH        &kp DOLLAR &kp PRCNT      &kp UNDER &kp LBKT  &kp RBKT &kp LBRC &kp RBRC  &kp EQUAL
+                                      &trans    &trans   &trans    &trans   &trans    &trans    
+      >;
+
+    };
+
+    navigation_layer {
+
+  /*
+  * ┌─────┬─────┬─────┬─────┬─────┬─────┐               ┌─────┬─────┬─────┬─────┬─────┬─────┐
+  * │TAB  │BR_DN│VL_DN│VL_MT│VL_UP│BR_UP│               │HOME │PG_DN│PG_UP│END  │  0  │BSPC │
+  * ├─────┼─────┼─────┼─────┼─────┼─────┤               ├─────┼─────┼─────┼─────┼─────┼─────┤
+  * │LCTRL│RW   │PREV │PAUSE│NEXT │FF   │               │LEFT │DOWN │UP   │RIGHT│  ;  │  '  │
+  * ├─────┼─────┼─────┼─────┼─────┼─────┤               ├─────┼─────┼─────┼─────┼─────┼─────┤
+  * │LSHFT│  Z  │BR_DN│BL_TG│BR_UP│trans│               │  N  │  M  │  ,  │  .  │  /  │RSHFT│
+  * └─────┴─────┴─────┴───┬─┴───┬─┴───┬─┴───┐        ┌──┴──┬──┴──┬──┴──┬──┴─────┴─────┴─────┘
+  *                       │LALT │MO3  │LGUI │        │RET/3│SPC  │RALT │
+  *                       └─────┴─────┴─────┘        └─────┴─────┴─────┘
+      */
+
+    display-name = "Nav";
+      bindings = <
+      &kp GRAVE  &kp C_BRI_DN &kp C_VOL_DN  &kp C_MUTE  &kp C_VOL_UP &kp C_BRI_UP     &kp HOME  &kp PG_DN &kp PG_UP &kp END   &kp N0  &trans
+      &kp LCTRL  &kp C_RW &kp C_PREV &kp C_PLAY_PAUSE &kp C_NEXT &kp C_FF       &kp LEFT  &kp DOWN  &kp UP    &kp RIGHT &trans  &trans
+      &trans     &trans   &kp C_BRI_DN &kp C_BKLT_TOG &kp C_BRI_UP &trans &trans &kp MINUS &kp EQUAL &kp LBKT &kp RBKT  &kp BSLH
+                                   &trans  &trans  &trans    &trans      &trans    &trans
+      >;
+    };
+
+    layer_switching_layer {
+
+  /*
+  * ┌─────┬─────┬─────┬─────┬─────┬─────┐               ┌─────┬─────┬─────┬─────┬─────┬─────┐
+  * │TAB  │  Q  │VL_DN│VL_MT│VL_UP│trans│               │HOME │PG_DN│PG_UP│END  │  0  │BSPC │
+  * ├─────┼─────┼─────┼─────┼─────┼─────┤               ├─────┼─────┼─────┼─────┼─────┼─────┤
+  * │LCTRL│RW   │PREV │PAUSE│NEXT │FF   │               │LEFT │DOWN │UP   │RIGHT│  ;  │  '  │
+  * ├─────┼─────┼─────┼─────┼─────┼─────┤               ├─────┼─────┼─────┼─────┼─────┼─────┤
+  * │LSHFT│  Z  │BR_DN│BL_TG│BR_UP│trans│               │  N  │  M  │  ,  │  .  │  /  │RSHFT│
+  * └─────┴─────┴─────┴───┬─┴───┬─┴───┬─┴───┐        ┌──┴──┬──┴──┬──┴──┬──┴─────┴─────┴─────┘
+  *                       │ ALT │MO3  │LGUI │        │RET/3│SPC  │RALT │
+  *                       └─────┴─────┴─────┘        └─────┴─────┴─────┘
+      */
+
+    display-name = "MULTI";
+      bindings = <
+      &kp F11    &kp F1       &kp F2        &kp F3       &kp F4       &kp F5          &kp F6  &kp F7 &kp F8  &kp F9      &kp F10 &kp F12
+      &kp LCTRL  &bt BT_SEL 1 &bt BT_SEL 2  &bt BT_SEL 3 &bt BT_SEL 4 &bt BT_CLR      &tog 1  &tog 2 &ext_power EP_OFF &ext_power EP_ON &kp CAPS  &kp LALT
+      &rgb_ug RGB_TOG &rgb_ug RGB_HUI &rgb_ug RGB_HUD &rgb_ug RGB_SAI &rgb_ug RGB_SAD &rgb_ug RGB_BRI &rgb_ug RGB_BRD &rgb_ug RGB_SPI &rgb_ug RGB_SPD &rgb_ug RGB_EFF &rgb_ug RGB_EFR &rgb_ug RGB_TOG     
+                                   &out OUT_USB  &kp INS  &trans    &trans   &kp DEL  &out OUT_BLE 
+      >;
+    };
+
+  };
 };

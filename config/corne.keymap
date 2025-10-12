@@ -10,8 +10,7 @@
 
 /* #define ZMK_POINTING_DEFAULT_MOVE_VAL 1500 */
 /* #define ZMK_POINTING_DEFAULT_SCRL_VAL 20 */
-/**/
-#include <dt-bindings/zmk/pointing.h>
+/* #include <dt-bindings/zmk/pointing.h> */
 
 / {
   conditional_layers {
@@ -23,16 +22,16 @@
   };
 };
 
-/ {
-  combos {
-    compatible = "zmk,combos";
-    combo_layer {
-      timeout-ms = <50>;
-      key-positions = <39 40>;
-      bindings = <&tog 6>;
-    };
-  };
-}; 
+/* / { */
+/*   combos { */
+/*     compatible = "zmk,combos"; */
+/*     combo_layer { */
+/*       timeout-ms = <50>; */
+/*       key-positions = <39 40>; */
+/*       bindings = <&tog 6>; */
+/*     }; */
+/*   }; */
+/* };  */
 
 &lt {
   tapping-term-ms = <180>;
@@ -209,16 +208,16 @@
       >;
     };
 
-    mouse_layer {
-      display-name = "Mouse";
-      bindings = <
-        &kp TAB   &kp Q  &kp W  &kp E   &kp R   &kp T                      &kp Y  &msc SCRL_DOWN  &mmv MOVE_UP     &msc SCRL_UP   &kp P    &kp BSLH
-        &kp LCTRL &kp A  &kp S  &kp D   &kp F   &kp G                      &kp H  &mmv MOVE_LEFT  &mmv MOVE_DOWN     &mmv MOVE_RIGHT   &kp SEMI &kp SQT
-        &kp LSHFT &kp Z  &kp X  &kp C   &kp V   &kp B                      &kp N  &mkp LCLK  &mkp RCLK &mkp MCLK &kp FSLH &kp RSHFT
-        &kp LGUI &mt LALT BSPC &lt 3 ESC      &lt 4 RET &kp SPACE &kp RALT
-      >;
-
-    };
+    /* mouse_layer { */
+    /*   display-name = "Mouse"; */
+    /*   bindings = < */
+    /*     &kp TAB   &kp Q  &kp W  &kp E   &kp R   &kp T                      &kp Y  &msc SCRL_DOWN  &mmv MOVE_UP     &msc SCRL_UP   &kp P    &kp BSLH */
+    /*     &kp LCTRL &kp A  &kp S  &kp D   &kp F   &kp G                      &kp H  &mmv MOVE_LEFT  &mmv MOVE_DOWN     &mmv MOVE_RIGHT   &kp SEMI &kp SQT */
+    /*     &kp LSHFT &kp Z  &kp X  &kp C   &kp V   &kp B                      &kp N  &mkp LCLK  &mkp RCLK &mkp MCLK &kp FSLH &kp RSHFT */
+    /*     &kp LGUI &mt LALT BSPC &lt 3 ESC      &lt 4 RET &kp SPACE &kp RALT */
+    /*   >; */
+    /**/
+    /* }; */
 
   };
 };

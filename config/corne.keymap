@@ -222,7 +222,7 @@
   *                       │LALT │GUI/B│ESC/2│        │RET/3│SPC  │RCTRL│
   *                       └─────┴─────┴─────┘        └─────┴─────┴─────┘
   */
-    display-name = "Main";
+    display-name = "Mouse";
       bindings = <
       &kp TAB   &kp Q  &kp W  &kp E   &kp R   &kp T                      &kp Y  &msc SCRL_DOWN  &mmv MOVE_UP     &msc SCRL_DOWN   &kp P    &kp BSLH
       &kp LCTRL &kp A  &kp S  &kp D   &kp F   &kp G                      &kp H  &mmv MOVE_LEFT  &mmv MOVE_DOWN     &mmv MOVE_RIGHT   &kp SEMI &kp SQT

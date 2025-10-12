@@ -2,4 +2,4 @@
 
 ## TODOs:
 
-- [ ] fix luna
+- [ ] fix luna not showing

@@ -3,3 +3,4 @@
 ## TODOs:
 
 - [x] fix luna not showing!
+- [ ] more fancy QoL

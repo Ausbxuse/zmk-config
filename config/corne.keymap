@@ -212,9 +212,9 @@
     mouse_layer {
       display-name = "Mouse";
       bindings = <
-        &kp TAB   &kp Q  &kp W  &kp E   &kp R   &kp T                      &kp Y  &msc SCRL_DOWN  &mmv MOVE_UP     &msc SCRL_DOWN   &kp P    &kp BSLH
+        &kp TAB   &kp Q  &kp W  &kp E   &kp R   &kp T                      &kp Y  &msc SCRL_DOWN  &mmv MOVE_UP     &msc SCRL_UP   &kp P    &kp BSLH
         &kp LCTRL &kp A  &kp S  &kp D   &kp F   &kp G                      &kp H  &mmv MOVE_LEFT  &mmv MOVE_DOWN     &mmv MOVE_RIGHT   &kp SEMI &kp SQT
-        &kp LSHFT &kp Z  &kp X  &kp C   &kp V   &kp B                      &kp N  &mkp LCLK  &mkp RLCK &mkp MCLK &kp FSLH &kp RSHFT
+        &kp LSHFT &kp Z  &kp X  &kp C   &kp V   &kp B                      &kp N  &mkp LCLK  &mkp RCLK &mkp MCLK &kp FSLH &kp RSHFT
         &kp LGUI &mt LALT BSPC &lt 3 ESC      &lt 4 RET &kp SPACE &kp RALT
       >;
 

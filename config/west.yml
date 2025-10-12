@@ -12,7 +12,7 @@ manifest:
     - name: zmk
       remote: zmkfirmware
       import: app/west.yml
-    - name: zmk-nice-epaper
+    - name: zmk-nice-oled
       remote: mctechnology17
       revision: main
   self:

@@ -13,6 +13,13 @@
 #include <dt-bindings/zmk/pointing.h>
 
 / {
+    debounce {
+        debounce-delay-ms = <10>;
+    };
+};
+
+
+/ {
   conditional_layers {
     compatible = "zmk,conditional-layers";
     tri_layer {
